@@ -13,8 +13,10 @@ var getPrice = (count, tax) => {
 
 var invoice = {
     number : 123,
+    name : "Vasia",
     process : function() {
         console.log(this);
+        console.log(this.name)
     }
 }
 
@@ -40,3 +42,38 @@ var newInvoice = {
 
 // what is call
 // invoice.process().call(newInvoice);
+var user = {
+    fistName : "Vasia",
+    sayHi :  function() {
+        console.log(this.fistName)
+    }
+}
+
+setTimeout(user.sayHi.bind(user), 1000);
+
+//curring
+
+function mul(a,b) {
+    return a * b;
+}
+
+var double = mul.bind(null, 2);
+console.log("5 is doubled: " + double(5));
+
+//bind in javascript is useful when
+// 1) you need to reuse function with different context
+// 2) you can do currying
+
+
+function pritnFullNameWithDelimiter(delimiter) {
+    console.log(this.firstName + ' ' + delimiter + ' ' + this.lastName);
+}
+
+var obj = {
+    firstName : 'Egor',
+    lastName : 'Maiorov'
+}
+
+
+pritnFullNameWithDelimiter.call(obj, ',')
+
